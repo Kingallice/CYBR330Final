@@ -12,6 +12,7 @@ class ChessBot:
             info = requests.get(LiChessAPI + 'account', headers={'Authorization': 'Bearer '+BOT_API_KEY}).json()
             if 'title' not in info or info['title'] != 'BOT':
                 raise ConnectionError('Account is not registered as a BOT')
+            self._KEY = BOT_API_KEY
             self._id = info['id']
             self._userName = info['username']
             self._perfs = info['perfs']
@@ -22,6 +23,9 @@ class ChessBot:
         except:
             print_exception()
 
+    def getKey(self):
+        """Returns the API key for the Bot"""
+        return self._KEY
 
     def getId(self):
         """Returns the id of the Bot"""
