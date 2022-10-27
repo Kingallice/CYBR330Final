@@ -4,6 +4,7 @@ import requests
 
 LiChessAPI = 'https://lichess.org/api/'
 
+
 class ChessBot:
     """Class that holds information about the ChessBot"""
     def __init__(self, BOT_API_KEY = 'lip_LIRgnxQvamGWcKKIH9x7'):
