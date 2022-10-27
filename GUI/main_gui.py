@@ -46,11 +46,18 @@ def run_gui():
                             justification='center',
                             expand_x=True)],
 
-                   [sg.Button('START',
+                   [sg.Button('SUBMIT',
                               size=7,
                               button_color='darkgreen',
-                              font=('American Typewriter', 20, 'bold'),
-                              key='-START-')]]
+                              font=('American Typewriter', 20),
+                              key='-SUBMIT-'),
+                    sg.Button('BATTLE',
+                              button_type=sg.BUTTON_TYPE_CLOSES_WIN,
+                              size=7,
+                              button_color='darkred',
+                              font=('American Typewriter', 20),
+                              key='-BATTLE-')
+                    ]]
 
     #              [New GUI elements can be added between brackets like this]
 
@@ -81,4 +88,4 @@ def run_gui():
     return input_list
 
 
-print(run_gui())
+print(run_gui())        # prints the bot choice to console for testing
