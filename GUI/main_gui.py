@@ -17,15 +17,16 @@ layout_main = [[sg.Text("Chess Bots 3000",
                [sg.Text('Created by Garret, Noah, and Jake',
                         text_color='white',
                         font=('American Typewriter', 16, 'bold'),
-                        pad=((0, 0), (0, 50)))],
+                        pad=((0, 0), (0, 50)),
+                        key='credit')],
                [sg.Text('Choose your chess bot below:',
                         auto_size_text=True,
                         font=font_h1,
                         justification='center',
-                        expand_x=True)],
+                        expand_x=True,
+                        key='h2')],
 
                [sg.InputCombo(bot_list,
-                              enable_events=True,
                               default_value='<choose a bot>',
                               size=15,
                               readonly=True,
@@ -37,14 +38,15 @@ layout_main = [[sg.Text("Chess Bots 3000",
                               key='bot_choice')],
 
                [sg.Button("Start",
-                          enable_events=True,
                           size=7,
                           button_color='darkgreen',
-                          font=('American Typewriter', 20, 'bold')),
+                          font=('American Typewriter', 20, 'bold'),
+                          key='start'),
                 sg.Button("Quit",
                           size=7,
                           button_color='darkred',
-                          font=('American Typewriter', 20, 'bold'))],
+                          font=('American Typewriter', 20, 'bold'),
+                          key='quit')],
 
                # [New GUI elements can be added between brackets like this]
 
@@ -63,7 +65,7 @@ while True:  # This is the event loop, where all events are handled. It's unfini
     event, values = window.read()
     if event == sg.WINDOW_CLOSED or event == 'Quit':
         break
-    window['title'].update("Thanks for battling!")
+    
 
 window.close()
 
