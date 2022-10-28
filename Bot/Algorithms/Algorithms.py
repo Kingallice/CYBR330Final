@@ -1,3 +1,4 @@
+from curses.ascii import islower, isupper
 from re import X
 import chess
 
@@ -29,3 +30,19 @@ class AlgorithmBase():
     def getBoard(self):
         """Returns a copy of the board"""
         return self._board.copy()
+
+    def getPieceCount(self, color=None):
+        """Returns dictionary of pieces remain for each color (or specified color only)."""
+        white = {}
+        black = {}
+        for x in self._board.board_fen():
+            if x.islower():
+                pass
+            elif x.isupper():
+                pass
+        if color.lower() == 'white':
+            return white
+        elif color.lower() == 'black':
+            return black
+        else:
+            return (white, black)
