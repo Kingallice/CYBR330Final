@@ -1,5 +1,3 @@
-from curses.ascii import islower, isupper
-from re import X
 import chess
 
 
