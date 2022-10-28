@@ -29,18 +29,43 @@ class AlgorithmBase():
         """Returns a copy of the board"""
         return self._board.copy()
 
-    def getPieceCount(self, color=None):
-        """Returns dictionary of pieces remain for each color (or specified color only)."""
+    def getPieceCount(self, color=""):
+        """Returns dictionary of pieces remaining for each color (or specified color only)."""
         white = {}
         black = {}
         for x in self._board.board_fen():
             if x.islower():
-                pass
+                if x in black.keys():
+                    black[x] += 1
+                else:
+                    black[x] = 1
             elif x.isupper():
-                pass
+                if x in white.keys():
+                    white[x] += 1
+                else:
+                    white[x] = 1
         if color.lower() == 'white':
             return white
         elif color.lower() == 'black':
             return black
-        else:
-            return (white, black)
+        return {"white" : white, "black" : black}
+
+    def getScores(self, color=""):
+        """Returns score of each color (or color specified)."""
+        scores = {"white" : 0, "black" : 0}
+        pieces = self.getPieceCount()
+        for x in pieces:
+            for y in pieces[x]:
+                if y.lower() in ['p']:
+                    scores[x] += 1 * pieces[x][y]
+                elif y.lower() in ['k', 'b']:
+                    scores[x] += 3 * pieces[x][y]
+                elif y.lower() in ['r']:
+                    scores[x] += 5 * pieces[x][y]
+                elif y.lower() in ['q']:
+                    scores[x] += 9 * pieces[x][y]
+        if color.lower() == 'white':
+            return scores['white']
+        elif color.lower() == 'black':
+            return scores['black']
+        return scores
