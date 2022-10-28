@@ -2,12 +2,9 @@ import Algorithms
 import chess
 
 
-class DumbBot(Algorithms):
+class DumbBot:
     def __int__(self, state=None):
-        self._board = chess.Board()
-        if state is not None:
-            for x in state.split(' '):
-                self._board.push(chess.Move.from_uci(x))
+        self._base = Algorithms(state)
 
     def moveUCI(self, e):
         """Adds a move using UCI (ex: e2e4 - StartEnd) format to the board"""

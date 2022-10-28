@@ -2,7 +2,7 @@ import PySimpleGUI as sg
 
 
 def run_gui():
-    bot_list = ["Dumb Bot", "Smart Bot", "Random Bot", "<bot4>", "<bot5>"]
+    bot_list = ["Dumb Bot", "Smart Bot", "Random Bot", "Kill Bot", "Stock Fish"]
 
     font_title = ('Phosphate', 72, 'bold')
     font_h1 = ('American Typewriter', 16)

@@ -2,7 +2,7 @@ import Algorithms
 import chess
 
 
-class RandomBot:
+class StockFish:
     def __int__(self, state=None):
         self._base = Algorithms(state)
 
