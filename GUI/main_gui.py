@@ -4,8 +4,8 @@ import PySimpleGUI as sg
 def run_gui():
     bot_list = ["Dumb Bot", "Smart Bot", "Random Bot", "Kill Bot", "Stock Fish"]
 
-    font_title = ('Phosphate', 72, 'bold')
-    font_h1 = ('American Typewriter', 16)
+    font_title = ('Arial', 72, 'bold')
+    font_h1 = ('Arial', 16)
 
     layout_main = [[sg.Text("Chess Bots 3000",
                             auto_size_text=True,
@@ -17,7 +17,7 @@ def run_gui():
                             key='-TITLE-')],
                    [sg.Text('Created by Garret, Noah, and Jake',
                             text_color='white',
-                            font=('American Typewriter', 16, 'bold'),
+                            font=('Arial', 16, 'bold'),
                             pad=((0, 0), (0, 50)),
                             key='credit')],
                    [sg.Text('Choose your chess bot below:',
@@ -31,7 +31,7 @@ def run_gui():
                                   default_value='<choose a bot>',
                                   size=15,
                                   readonly=True,
-                                  font=('American Typewriter', 26),
+                                  font=('Arial', 26),
                                   pad=((0, 0), (0, 50)),
                                   button_background_color='blue',
                                   text_color='darkblue',
@@ -41,7 +41,7 @@ def run_gui():
                    [sg.Text('',
                             key='-OUTPUT-',
                             auto_size_text=True,
-                            font=('American Typewriter', 20),
+                            font=('Arial', 20),
                             text_color='gold',
                             justification='center',
                             expand_x=True)],
@@ -49,13 +49,13 @@ def run_gui():
                    [sg.Button('SUBMIT',
                               size=7,
                               button_color='darkgreen',
-                              font=('American Typewriter', 20),
+                              font=('Arial', 20),
                               key='-SUBMIT-'),
                     sg.Button('BATTLE',
                               button_type=sg.BUTTON_TYPE_CLOSES_WIN,
                               size=7,
                               button_color='darkred',
-                              font=('American Typewriter', 20),
+                              font=('Arial', 20),
                               key='-BATTLE-')
                     ]]
 
