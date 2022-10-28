@@ -87,5 +87,3 @@ def run_gui():
     window.close()
     return input_list
 
-
-print(run_gui())        # prints the bot choice to console for testing

@@ -7,10 +7,11 @@ LiChessAPI = 'https://lichess.org/api/'
 
 class ChessBot:
     """Class that holds information about the ChessBot"""
-    def __init__(self, BOT_API_KEY = 'lip_LIRgnxQvamGWcKKIH9x7'):
+
+    def __init__(self, BOT_API_KEY='lip_LIRgnxQvamGWcKKIH9x7'):
         """Initializes a new instance of the Bot utilizing the information provided by the LiChessAPI"""
         try:
-            info = requests.get(LiChessAPI + 'account', headers={'Authorization': 'Bearer '+BOT_API_KEY}).json()
+            info = requests.get(LiChessAPI + 'account', headers={'Authorization': 'Bearer ' + BOT_API_KEY}).json()
             if 'title' not in info or info['title'] != 'BOT':
                 raise ConnectionError('Account is not registered as a BOT')
             self._KEY = BOT_API_KEY
@@ -31,11 +32,11 @@ class ChessBot:
     def getId(self):
         """Returns the id of the Bot"""
         return self._id
-    
+
     def getUserName(self):
         """Returns the username of the Bot"""
         return self._userName
-    
+
     def getPerformance(self, type=''):
         """Gets the performance of the Bot (Can pass a game type to pull only data related to that mode)"""
         try:
@@ -45,10 +46,12 @@ class ChessBot:
 
     def getAge(self):
         """Returns a timedelta object that represents the age of the Bot"""
-        return timedelta(seconds=(round(datetime.now().timestamp()) - self._creationDate//1000))
+        return timedelta(seconds=(round(datetime.now().timestamp()) - self._creationDate // 1000))
+
     def getAgeDays(self):
         """Returns the age of the Bot in days"""
         return self.getAge().days
+
     def getAgeYears(self):
         """Returns the age of the Bot in years"""
         return round(self.getAge().days / 365, 1)
