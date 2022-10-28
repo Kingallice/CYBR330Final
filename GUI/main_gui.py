@@ -66,7 +66,7 @@ def run_gui():
                        resizable=True,
                        element_justification='center',
                        auto_size_text=True,
-                       alpha_channel=0.95,
+                       alpha_channel=0.99,
                        size=(1000, 400)
                        )
 
