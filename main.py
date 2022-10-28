@@ -1,5 +1,9 @@
 from GUI.main_gui import run_gui
-from Bot.Algorithms import Algorithms, DumbBot, RandomBot, SmartBot, KillBot, StockFish
+from Bot.Logic.Dumb import DumbBot
+from Bot.Logic.Kill import KillBot
+from Bot.Logic.Random import RandomBot
+from Bot.Logic.Smart import SmartBot
+from Bot.Logic.Stock import StockFish
 from Bot.Intialization import ChessBot
 
 
