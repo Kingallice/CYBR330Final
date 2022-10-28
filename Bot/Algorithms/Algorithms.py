@@ -1,3 +1,4 @@
+from re import X
 import chess
 
 
@@ -24,3 +25,7 @@ class AlgorithmBase():
     def isTurn(self, color):
         """Returns True if color is for current player"""
         return self.color().lower() == color.lower()
+
+    def getBoard(self):
+        """Returns a copy of the board"""
+        return self._board.copy()
