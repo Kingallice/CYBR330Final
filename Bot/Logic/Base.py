@@ -69,3 +69,6 @@ class AlgorithmBase():
         elif color.lower() == 'black':
             return scores['black']
         return scores
+
+    def getMove():
+        raise NotImplementedError
