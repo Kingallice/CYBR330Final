@@ -70,5 +70,8 @@ class AlgorithmBase():
             return scores['black']
         return scores
 
-    def getMove():
+    def getMove(self):
+        """Abstract class to get a final move from the algorithm in UCI format.
+        
+        Must be implemented by algorithm class!"""
         raise NotImplementedError
