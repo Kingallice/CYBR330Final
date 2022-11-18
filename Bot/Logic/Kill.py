@@ -1,4 +1,4 @@
-from Base import AlgorithmBase
+from Bot.Logic.Base import AlgorithmBase
 import chess
 
 
