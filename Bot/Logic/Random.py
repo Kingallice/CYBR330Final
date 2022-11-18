@@ -1,8 +1,14 @@
-from Base import AlgorithmBase
+from Bot.Logic.Base import AlgorithmBase
 import chess
+import random
 
 
 class RandomBot(AlgorithmBase):
 
-    pass
+    def getMove(self):
+        """"""
+        board = self.getBoard()
+        move = random.choice(list(board.generate_legal_moves()))
+        return move
+
 
