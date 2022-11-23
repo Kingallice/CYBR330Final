@@ -1,7 +1,7 @@
 import chess
 
 
-class AlgorithmBase():
+class AlgorithmBase:
     """Base class for chess"""
 
     def __init__(self, state=None):
