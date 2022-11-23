@@ -9,6 +9,8 @@ class AlgorithmBase():
         self._board = chess.Board()
         if state is not None:
             for x in state.split(' '):
+                if x == '':
+                    break
                 self._board.push(chess.Move.from_uci(x))
 
     def moveUCI(self, e):
