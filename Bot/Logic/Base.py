@@ -1,7 +1,7 @@
 import chess
 
 
-class AlgorithmBase():
+class AlgorithmBase:
     """Base class for chess"""
 
     def __init__(self, state=None):
@@ -9,6 +9,8 @@ class AlgorithmBase():
         self._board = chess.Board()
         if state is not None:
             for x in state.split(' '):
+                if x == '':
+                    break
                 self._board.push(chess.Move.from_uci(x))
 
     def moveUCI(self, e):

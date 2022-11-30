@@ -59,3 +59,7 @@ class ChessBot:
     def getUrl(self):
         """Returns the URL for the profile of the Bot"""
         return self._url
+
+    def getGames(self):
+        """Returns a list of active games of the Bot"""
+        return requests.get(LiChessAPI+"account/playing", headers={"Authorization":'Bearer '+self.getKey()}).json()['nowPlaying']
