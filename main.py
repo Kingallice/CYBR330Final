@@ -2,7 +2,7 @@ from GUI.main_gui import run_gui
 from Bot.Logic.Dumb import DumbBot
 from Bot.Logic.Kill import KillBot
 from Bot.Logic.Random import RandomBot
-from Bot.Logic.Smart import SmartBot
+from Bot.Logic.Copy import SmartBot
 from Bot.Logic.Stock import StockFish
 from Bot.Intialization.ChessBot import ChessBot
 from Bot.GameConnector import GameConnector
