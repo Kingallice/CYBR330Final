@@ -5,7 +5,7 @@ class AlgorithmBase:
     """Base class for chess"""
 
     def __init__(self, state=None):
-        """Initializes a chess Board (if state is passed it will intialize based on state)"""
+        """Initializes a chess Board (if state is passed it will initialize based on state)"""
         self._board = chess.Board()
         if state is not None:
             for x in state.split(' '):
