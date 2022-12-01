@@ -4,6 +4,9 @@ import requests
 
 class StockFish(AlgorithmBase):
 
+    def getName():
+        return "StockFish"
+
     def getMove(self):
         try:
             return self.getStockFishSuggestions()[0]

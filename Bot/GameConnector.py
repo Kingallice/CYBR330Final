@@ -1,4 +1,5 @@
 from Bot.Intialization.Games import Game
+from Bot.ResultUtil import ResultUtil
 
 import json
 import requests
@@ -25,12 +26,15 @@ class GameConnector:
                 if line:
                     lineData = json.loads(line.decode('utf-8'))
                     if 'winner' in lineData.keys():
+                        print(lineData)
+                        ResultUtil.formatResults(self._bot, self._game, lineData['winner'], self._algo)
                         if lineData['winner'] == 'white':
                             print('Game End:',Game.getColorName(self._game.getWhite()),'is victorious!')
                         else: 
                             print('Game End:',Game.getColorName(self._game.getBlack()),'is victorious!')
                         break
                     if 'status' in lineData.keys() and lineData['status'] == 'draw':
+                        ResultUtil.formatResults(self._bot, self._game, lineData['status'], self._algo)
                         print('Game End: Draw')
                         break
                     if 'state' in lineData.keys():

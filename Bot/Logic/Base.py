@@ -72,8 +72,14 @@ class AlgorithmBase:
             return scores['black']
         return scores
 
+    def getName(self):
+        """Abstract method to get the name of the Algorithm.
+        
+        Must be implemented by algorithm class!"""
+        raise NotImplementedError
+
     def getMove(self):
-        """Abstract class to get a final move from the algorithm in UCI format.
+        """Abstract method to get a final move from the algorithm in UCI format.
         
         Must be implemented by algorithm class!"""
         raise NotImplementedError

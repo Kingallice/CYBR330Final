@@ -6,10 +6,12 @@ from Bot.Logic.Smart import SmartBot
 from Bot.Logic.Stock import StockFish
 from Bot.Intialization.ChessBot import ChessBot
 from Bot.GameConnector import GameConnector
+from Bot.ResultUtil import ResultUtil
 
 
 def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
+    ResultUtil.resetResultFile()
     bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
     
     selection = run_gui()
@@ -24,7 +26,6 @@ def bot_select():
     if selection[0] == 'Stock Fish':
         GameConnector(bot, bot.getGames()[0]["gameId"],StockFish)
     return bot
-
 
 bot_choice = bot_select()
 

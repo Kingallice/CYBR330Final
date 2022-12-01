@@ -64,3 +64,8 @@ class Game:
             if id == self._white['id']:
                 return 'white'
         return None
+
+    def getOpponent(self, id):
+        if Game.getColorId(self.getWhite()) == id:
+            return self.getBlack()
+        return self.getWhite()
