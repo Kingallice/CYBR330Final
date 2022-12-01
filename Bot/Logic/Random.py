@@ -5,6 +5,9 @@ import random
 
 class RandomBot(AlgorithmBase):
     """Subclass bot logic for a bot that chooses moves randomly"""
+    def getName():
+        return "Random"
+
     def getMove(self):
         """
         Chooses a move by selecting a random move from list of legal moves.
@@ -12,6 +15,6 @@ class RandomBot(AlgorithmBase):
         """
         board = self.getBoard()
         move = random.choice(list(board.generate_legal_moves()))
-        return move
+        return move.uci()
 
 
