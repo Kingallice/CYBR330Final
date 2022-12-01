@@ -21,7 +21,7 @@ class ResultUtil:
 
     def saveResultFile(data):
         file = open(ResultUtil._resultPath, "w")
-        file.save(json.dumps(data))
+        file.write(json.dumps(data))
         file.close()
 
     def getWinLossDraw(data, opponent, algorithm):
@@ -29,14 +29,17 @@ class ResultUtil:
             if opponent in data.keys():
                 if algorithm in data[opponent].keys():
                     temp = data[opponent][algorithm]
-                    return (temp["win"], temp["loss"], temp["draw"])
+                    return (temp["Win"], temp["Loss"], temp["Draw"])
         return (0, 0, 0)
 
     def saveResults(data, results):
         if data:
-            data[results["Opponent"]][results["Algorithm"]] = {"win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}
+            if results["Opponent"] in data.keys():
+                data[results["Opponent"]][results["Algorithm"]] = {"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}
+            else:
+                data[results["Opponent"]] = {results["Algorithm"]: {"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}}
         else:
-            data = {results["Opponent"]:{results["Algorithm"]:{"win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}}}
+            data = {results["Opponent"]:{results["Algorithm"]:{"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}}}
         ResultUtil.saveResultFile(data)
 
     def formatResults(bot, game, endData, algorithm):
@@ -51,9 +54,9 @@ class ResultUtil:
         (win, loss, draw) = ResultUtil.getWinLossDraw(ResultUtil.getResultFile(), Game.getColorId(game.getOpponent(bot.getId())), algorithm.getName())
 
         if winner == None:
-            print('Draw', {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss, "Draw" : draw+1})
+            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss, "Draw" : draw+1})
         elif Game.getColorId(winner) == botId:
-            print('We won', {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win+1, "Loss": loss, "Draw" : draw})
+            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win+1, "Loss": loss, "Draw" : draw})
         else:
-            print('We lost', {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss+1, "Draw" : draw})
+            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss+1, "Draw" : draw})
         #print("Bot:", vars(bot), "\nGame:", vars(game), "\nWinner:", endData)
