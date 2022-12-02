@@ -5,7 +5,7 @@ import random
 
 class RandomBot(AlgorithmBase):
     """Subclass bot logic for a bot that chooses moves randomly"""
-    def getName():
+    def getName(self):
         return "Random"
 
     def getMove(self):
