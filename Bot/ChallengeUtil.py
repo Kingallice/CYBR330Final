@@ -7,6 +7,7 @@ class ChallengeUtil:
 
     def sendChallenge(bot, opponent):
         if "username" in opponent.keys():
+            data = None
             if opponent["username"] == 'ai' and "level" in opponent.keys():
                 data = {'level': opponent['level']}
             info = requests.post(LiChessAPI+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()})
@@ -29,4 +30,6 @@ class ChallengeUtil:
             for challenge in challenges:
                 newThread = threading.Thread(target=GameConnector, args=(bot, challenge, algo))
                 newThread.start()
-            
+            print(threading.activeCount())
+            while threading.activeCount() > 0:
+                pass
