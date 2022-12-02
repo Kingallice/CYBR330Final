@@ -6,7 +6,7 @@ import chess
 
 class DumbBot(AlgorithmBase):
 
-
+    # this is basically a pawn blitzkrieg
     def getMove(self):
 
         moveHistory = []
@@ -37,4 +37,6 @@ class DumbBot(AlgorithmBase):
 # print(d.getMove())
 # print(d.getName())
 # put the code below in main to test
+# bot = ChessBot()
+# ChallengeUtil.acceptChallenges(bot, [DumbBot, KillBot, RandomBot, BestBot, StockFish])
 # ChallengeUtil.sendChallenge(bot, {"username": "chessgarret"})
