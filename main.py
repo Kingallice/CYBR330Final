@@ -9,11 +9,12 @@ from Bot.GameConnector import GameConnector
 from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
 
+bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
+ChallengeUtil.acceptChallenges(bot, [DumbBot, KillBot, RandomBot, BestBot, StockFish])
 
 def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
     ResultUtil.resetResultFile()
-    bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
 
     selection = run_gui()
     if selection[0] == 'Dumb Bot':
@@ -25,7 +26,7 @@ def bot_select():
     elif selection[0] == 'Kill Bot':
         GameConnector(bot, bot.getGames()[0]["gameId"], KillBot)
     elif selection[0] == 'Stock Fish':
-        ChallengeUtil.testAlgorithm(bot, StockFish, [{"username":"ai","level":2},{"username":"ai","level":8}], 3)
+        ChallengeUtil.testAlgorithm(bot, StockFish, [{"username":"ai","level":2},{"username":"ai","level":8}], 5)
     return bot
 
 bot_choice = bot_select()
