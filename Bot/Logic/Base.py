@@ -31,11 +31,13 @@ class AlgorithmBase:
         """Returns a copy of the board"""
         return self._board.copy()
 
-    def getPieceCount(self, color=""):
+    def getPieceCount(self, board=None, color=""):
         """Returns dictionary of pieces remaining for each color (or specified color only)."""
         white = {}
         black = {}
-        for x in self._board.board_fen():
+        if not board:
+            board = self._board
+        for x in board.board_fen():
             if x.islower():
                 if x in black.keys():
                     black[x] += 1
@@ -50,12 +52,15 @@ class AlgorithmBase:
             return white
         elif color.lower() == 'black':
             return black
-        return {"white" : white, "black" : black}
+        return {"white": white, "black": black}
 
-    def getScores(self, color=""):
+    def getScores(self, board=None, color=""):
         """Returns score of each color (or color specified)."""
-        scores = {"white" : 0, "black" : 0}
-        pieces = self.getPieceCount()
+        scores = {"white": 0, "black": 0}
+        if board:
+            pieces = self.getPieceCount(board)
+        else:
+            pieces = self.getPieceCount()
         for x in pieces:
             for y in pieces[x]:
                 if y.lower() in ['p']:
@@ -83,3 +88,4 @@ class AlgorithmBase:
         
         Must be implemented by algorithm class!"""
         raise NotImplementedError
+
