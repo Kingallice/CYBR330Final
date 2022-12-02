@@ -6,7 +6,7 @@ import chess
 
 class DumbBot(AlgorithmBase):
 
-    # so far only works for black
+
     def getMove(self):
 
         moveHistory = []
