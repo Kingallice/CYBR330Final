@@ -10,7 +10,7 @@ from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
 
 bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
-ChallengeUtil.acceptChallenges(bot, [DumbBot, KillBot, RandomBot, BestBot, StockFish])
+ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, RandomBot, StockFish])
 
 def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
