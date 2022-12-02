@@ -32,7 +32,7 @@ class DumbBot(AlgorithmBase):
 
         # attempting a optimized route
     def getName(self):
-        return self.__class__.__name__
+        return "Dumb Bot"
 
 
 # -------------Test Code for Move Choice--------------------#
