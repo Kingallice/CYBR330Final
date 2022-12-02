@@ -21,26 +21,6 @@ class DumbBot(AlgorithmBase):
         for i in legal_Moves:
             if i in legal_Moves and self.getBoard().piece_at(chess.Move.from_uci(i).from_square).piece_type == 1:
                 return i
-        # for x in move_List:
-        #     if x in legal_Moves and self.getBoard().piece_at(chess.Move.from_uci(x).from_square).piece_type == 1:
-        #         return x
-        # need to move pawns at c7,d7,e7,f7 forwards 2 then moves them all forward one if applicable
-        # if self.getBoard().piece_at(chess.C7):
-        #     return chess.Move.from_uci('c7c5').uci()
-        # if self.getBoard().piece_at(chess.D7):
-        #     return chess.Move.from_uci('d7d5').uci()
-        # if self.getBoard().piece_at(chess.E7):
-        #     return chess.Move.from_uci('e7e5').uci()
-        # if self.getBoard().piece_at(chess.F7):
-        #     return chess.Move.from_uci('f7f5').uci()
-        # if self.getBoard().piece_at(chess.C5):
-        #     return chess.Move.from_uci('c5c4').uci()
-        # if self.getBoard().piece_at(chess.D5):
-        #     return chess.Move.from_uci('d5d4').uci()
-        # if self.getBoard().piece_at(chess.E5):
-        #     return chess.Move.from_uci('e5e4').uci()
-        # if self.getBoard().piece_at(chess.F5):
-        #     return chess.Move.from_uci('f5f4').uci()
 
         # implementing random moves for when logic is not applicable for above
         print([move.uci() for move in self.getBoard().generate_legal_moves()])
