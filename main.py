@@ -13,18 +13,18 @@ def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
     ResultUtil.resetResultFile()
     bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
-    
+
     selection = run_gui()
     if selection[0] == 'Dumb Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"],DumbBot)
+        GameConnector(bot, bot.getGames()[0]["gameId"], DumbBot)
     elif selection[0] == 'Random Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"],RandomBot)
-    elif selection[0] == 'Copy Bot':
+        GameConnector(bot, bot.getGames()[0]["gameId"], RandomBot)
+    elif selection[0] == 'Best Bot':
         GameConnector(bot, bot.getGames()[0]["gameId"], BestBot)
     elif selection[0] == 'Kill Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"],KillBot)
+        GameConnector(bot, bot.getGames()[0]["gameId"], KillBot)
     elif selection[0] == 'Stock Fish':
-        GameConnector(bot, bot.getGames()[0]["gameId"],StockFish)
+        GameConnector(bot, bot.getGames()[0]["gameId"], StockFish)
     return bot
 
 bot_choice = bot_select()
