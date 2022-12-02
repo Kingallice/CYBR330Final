@@ -29,7 +29,12 @@ class DumbBot(AlgorithmBase):
     def getName(self):
         return "Dumb Bot"
 
+
+
+
 # -------------Test Code for Move Choice--------------------#
 # d = DumbBot()
 # print(d.getMove())
 # print(d.getName())
+# put the code below in main to test
+# ChallengeUtil.sendChallenge(bot, {"username": "chessgarret"})
