@@ -1,1 +1,1 @@
-{"AI - Level 1": {"Kill": {"Win": 3, "Loss": 0, "Draw": 0}, "StockFish": {"Win": 1, "Loss": 0, "Draw": 0}, "Random": {"Win": 0, "Loss": 1, "Draw": 1}}, "AI - Level 8": {"Kill": {"Win": 0, "Loss": 1, "Draw": 0}, "StockFish": {"Win": 0, "Loss": 1, "Draw": 0}}}
+{"AI - Level 2": {"StockFish": {"Win": 1, "Loss": 0, "Draw": 1}}}
