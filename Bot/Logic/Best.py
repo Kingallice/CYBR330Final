@@ -31,7 +31,7 @@ class BestBot(AlgorithmBase):
 
     def getName(self):
         """Returns the name of the logic algorithm"""
-        return self.__class__.__name__
+        return "Best"
 
 
 # --------------Test Code for Move Choice----------------------- #
