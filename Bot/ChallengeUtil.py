@@ -18,7 +18,7 @@ class ChallengeUtil:
                         threading.Thread(target=GameConnector, args=(bot, chal['id'], random.choice(algoList))).start()
 
     def startAcceptingChallenges(bot, algoList):
-        threading.Thread(target=ChallengeUtil.acceptChallenges, args=(bot, algoList))
+        threading.Thread(target=ChallengeUtil.acceptChallenges, args=(bot, algoList)).start()
 
     def sendChallenge(bot, opponent):
         if "username" in opponent.keys():
