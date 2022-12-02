@@ -33,10 +33,7 @@ class DumbBot(AlgorithmBase):
 
 
 # -------------Test Code for Move Choice--------------------#
-# d = DumbBot()
-# print(d.getMove())
-# print(d.getName())
-# put the code below in main to test
+# put the code below in main to test, change the user name based on whos being challenged
 # bot = ChessBot()
 # ChallengeUtil.acceptChallenges(bot, [DumbBot, KillBot, RandomBot, BestBot, StockFish])
 # ChallengeUtil.sendChallenge(bot, {"username": "chessgarret"})
