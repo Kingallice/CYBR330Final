@@ -5,6 +5,9 @@ import random
 class BestBot(AlgorithmBase):
     """BestBot chooses the most beneficial move from the set of all available moves then plays that move."""
 
+    def getName(self):
+        return "Best"
+
     def getMove(self):
         """Method that serves the purpose of choosing the BestBot's next move"""
         board = self.getBoard()

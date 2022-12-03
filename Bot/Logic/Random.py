@@ -14,7 +14,6 @@ class RandomBot(AlgorithmBase):
         :return: a UCI encoded chess move as a String
         """
         board = self.getBoard()
-        move = random.choice(list(board.generate_legal_moves()))
-        return move.uci()
+        return random.choice([move.uci() for move in board.generate_legal_moves()])
 
 

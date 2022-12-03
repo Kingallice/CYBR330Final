@@ -82,7 +82,7 @@ def run_gui():
             window['-OUTPUT-'].update('You have chosen ' + input_list[0] + '. It seems you have chosen death... '
                                                                            'Sending your champion to battle!')
         else:
-            window['-OUTPUT-'].update('You have chosen ' + input_list[0] + '. Sending your champion to battle!')
+            window['-OUTPUT-'].update('You have chosen ' + str(input_list[0]) + '. Sending your champion to battle!')
 
     window.close()
     return input_list

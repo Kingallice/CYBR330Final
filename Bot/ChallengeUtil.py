@@ -8,14 +8,15 @@ LiChessAPI = "https://lichess.org/api/challenge"
 class ChallengeUtil:
 
     def acceptChallenges(bot, algoList):
-        timer = time.time()
+        timer = None
         while True:
-            if time.time() - timer > 60:
+            if not timer or time.time() - timer > 60:
                 req = requests.get(LiChessAPI, headers={"Authorization":'Bearer ' + bot.getKey()}).json()
                 if req['in']:
                     for chal in req['in']:
                         requests.post(LiChessAPI+'/'+chal['id']+'/accept', headers={"Authorization":'Bearer ' + bot.getKey()})
                         threading.Thread(target=GameConnector, args=(bot, chal['id'], random.choice(algoList))).start()
+                timer = time.time()
 
     def startAcceptingChallenges(bot, algoList):
         threading.Thread(target=ChallengeUtil.acceptChallenges, args=(bot, algoList)).start()

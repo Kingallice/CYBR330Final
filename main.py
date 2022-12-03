@@ -8,6 +8,7 @@ from Bot.Intialization.ChessBot import ChessBot
 from Bot.GameConnector import GameConnector
 from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
+import random
 
 bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
 ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, RandomBot, StockFish])
@@ -27,6 +28,8 @@ def bot_select():
         GameConnector(bot, bot.getGames()[0]["gameId"], KillBot)
     elif selection[0] == 'Stock Fish':
         ChallengeUtil.testAlgorithm(bot, StockFish, [{"username":"ai","level":2},{"username":"ai","level":8}], 5)
+    else:
+        GameConnector(bot, bot.getGames()[0]["gameId"], StockFish)
     return bot
 
 bot_choice = bot_select()

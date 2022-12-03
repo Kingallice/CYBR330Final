@@ -81,11 +81,11 @@ class AlgorithmBase:
         """Abstract method to get the name of the Algorithm.
         
         Must be implemented by algorithm class!"""
-        raise NotImplementedError
+        raise NotImplementedError("getName not Implemented")
 
     def getMove(self):
         """Abstract method to get a final move from the algorithm in UCI format.
         
         Must be implemented by algorithm class!"""
-        raise NotImplementedError
+        raise NotImplementedError("getMove not Implemented")
 
