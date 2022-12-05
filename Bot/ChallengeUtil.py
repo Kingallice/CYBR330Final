@@ -26,7 +26,8 @@ class ChallengeUtil:
             data = None
             if opponent["username"] == 'ai' and "level" in opponent.keys():
                 data = {'level': opponent['level']}
-            info = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()}).json()
+            req = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()})
+            info = req.json()
             if "challenge" in info.keys():
                 info = info["challenge"]
             return(info["id"])

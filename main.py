@@ -10,7 +10,7 @@ from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
 import random
 
-bot = ChessBot()
+bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
 ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, BestBot, RandomBot, StockFish])
 
 def bot_select():
@@ -20,7 +20,7 @@ def bot_select():
         {"username":"ai","level":2},
         {"username":"ai","level":8}, 
         {"username":"dummyette"}]
-    gameCount = 5
+    gameCount = 2
 
     selection = run_gui()
     if selection[0] == 'Dumb Bot':

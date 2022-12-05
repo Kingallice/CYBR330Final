@@ -1,1 +1,1 @@
-{"AI - Level 2": {"Dumb": {"Win": 1, "Loss": 4, "Draw": 0}, "Kill": {"Win": 3, "Loss": 1, "Draw": 0}}, "AI - Level 8": {"Dumb": {"Win": 0, "Loss": 5, "Draw": 0}, "Kill": {"Win": 0, "Loss": 5, "Draw": 0}}, "dummyette": {"Dumb": {"Win": 0, "Loss": 5, "Draw": 0}, "Kill": {"Win": 0, "Loss": 3, "Draw": 0}}}
+{"AI - Level 8": {"Kill": {"Win": 0, "Loss": 2, "Draw": 0}}, "dummyette": {"Kill": {"Win": 0, "Loss": 1, "Draw": 1}}, "AI - Level 2": {"Kill": {"Win": 1, "Loss": 0, "Draw": 0}}}

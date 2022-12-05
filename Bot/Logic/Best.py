@@ -28,6 +28,10 @@ class BestBot(AlgorithmBase):
             if scores.get(bot_color) >= scores.get(op_color):
                 best_moves.append(board.uci(move))
 
-        c_index = random.randint(0, len(best_moves))
-        move_choice = best_moves[c_index]
-        return move_choice
+        if not best_moves:
+            best_moves = [move.uci() for move in self.getBoard().generate_legal_moves()]
+        if best_moves:
+            c_index = random.randint(0, len(best_moves)-1)
+            move_choice = best_moves[c_index]
+            return move_choice
+        return ""
