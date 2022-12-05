@@ -23,7 +23,9 @@ def bot_select():
 
     selection = run_gui()
     username = selection[1]
-    opponentList = [{"username": username}]
+    if not username:
+        opponentList = [{"username": username}]
+
     if selection[0] == 'Dumb Bot':
         ChallengeUtil.testAlgorithm(bot, DumbBot, opponentList, gameCount)
     elif selection[0] == 'Random Bot':
