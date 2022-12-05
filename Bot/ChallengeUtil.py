@@ -19,15 +19,17 @@ class ChallengeUtil:
                 timer = time.time()
 
     def startAcceptingChallenges(bot, algoList):
-        threading.Thread(target=ChallengeUtil.acceptChallenges, args=(bot, algoList)).start()
+        threading.Thread(target=ChallengeUtil.acceptChallenges, args=(bot, algoList),name="Accepting Challenges").start()
 
     def sendChallenge(bot, opponent):
         if "username" in opponent.keys():
             data = None
             if opponent["username"] == 'ai' and "level" in opponent.keys():
                 data = {'level': opponent['level']}
-            info = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()})
-            return(info.json()["id"])
+            info = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()}).json()
+            if "challenge" in info.keys():
+                info = info["challenge"]
+            return(info["id"])
         return None
     
     def createChallenges(bot, opponent, num):
@@ -41,8 +43,10 @@ class ChallengeUtil:
     def testAlgorithm(bot, algo, opponentList, num):
         for opponent in opponentList:
             challenges = ChallengeUtil.createChallenges(bot, opponent, num)
+            i = 0
             for challenge in challenges:
-                newThread = threading.Thread(target=GameConnector, args=(bot, challenge, algo))
+                while threading.activeCount() > 5:
+                    time.sleep(60)
+                i += 1
+                newThread = threading.Thread(target=GameConnector, args=(bot, challenge, algo), name="Game " + str(i) + " " + str(opponent) + " - " + algo.getName())
                 newThread.start()
-            while threading.activeCount() > 1:
-                pass

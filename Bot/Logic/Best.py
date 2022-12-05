@@ -5,7 +5,7 @@ import random
 class BestBot(AlgorithmBase):
     """BestBot chooses the most beneficial move from the set of all available moves then plays that move."""
 
-    def getName(self):
+    def getName():
         return "Best"
 
     def getMove(self):
@@ -31,7 +31,3 @@ class BestBot(AlgorithmBase):
         c_index = random.randint(0, len(best_moves))
         move_choice = best_moves[c_index]
         return move_choice
-
-    def getName(self):
-        """Returns the name of the logic algorithm"""
-        return "Best"

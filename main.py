@@ -10,26 +10,32 @@ from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
 import random
 
-bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
+bot = ChessBot()
 ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, BestBot, RandomBot, StockFish])
 
 def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
     ResultUtil.resetResultFile()
+    opponentList =  [
+        {"username":"ai","level":2},
+        {"username":"ai","level":8}, 
+        {"username":"dummyette"}]
+    gameCount = 5
 
     selection = run_gui()
     if selection[0] == 'Dumb Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"], DumbBot)
+        ChallengeUtil.testAlgorithm(bot, DumbBot, opponentList, gameCount)
     elif selection[0] == 'Random Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"], RandomBot)
+        ChallengeUtil.testAlgorithm(bot, RandomBot, opponentList, gameCount)
     elif selection[0] == 'Best Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"], BestBot)
+        ChallengeUtil.testAlgorithm(bot, BestBot, opponentList, gameCount)
     elif selection[0] == 'Kill Bot':
-        GameConnector(bot, bot.getGames()[0]["gameId"], KillBot)
+        ChallengeUtil.testAlgorithm(bot, KillBot, opponentList, gameCount)
     elif selection[0] == 'Stock Fish':
-        ChallengeUtil.testAlgorithm(bot, StockFish, [{"username":"ai","level":2},{"username":"ai","level":8}], 5)
+        ChallengeUtil.testAlgorithm(bot, StockFish, opponentList, gameCount)
     else:
-        GameConnector(bot, bot.getGames()[0]["gameId"], StockFish)
+        for x in [DumbBot, KillBot, BestBot, RandomBot, StockFish]:
+            ChallengeUtil.testAlgorithm(bot, x, opponentList, gameCount)
     return bot
 
 bot_choice = bot_select()

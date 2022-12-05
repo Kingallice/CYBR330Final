@@ -4,7 +4,7 @@ import random
 
 class KillBot(AlgorithmBase):
 
-    def getName(self):
+    def getName():
         return "Kill"
     
     def getMove(self):

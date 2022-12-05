@@ -77,7 +77,7 @@ class AlgorithmBase:
             return scores['black']
         return scores
 
-    def getName(self):
+    def getName():
         """Abstract method to get the name of the Algorithm.
         
         Must be implemented by algorithm class!"""

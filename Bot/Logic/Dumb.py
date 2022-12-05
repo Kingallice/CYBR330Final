@@ -6,7 +6,7 @@ import chess
 
 class DumbBot(AlgorithmBase):
 
-    def getName(self):
+    def getName():
         return "Dumb"
 
     # this is basically a pawn blitzkrieg
@@ -27,8 +27,10 @@ class DumbBot(AlgorithmBase):
                 return i
 
         # implementing random moves for when logic is not applicable for above
-        print([move.uci() for move in self.getBoard().generate_legal_moves()])
-        return random.choice([move.uci() for move in self.getBoard().generate_legal_moves()])
+        #print([move.uci() for move in self.getBoard().generate_legal_moves()])
+        moves = [move.uci() for move in self.getBoard().generate_legal_moves()]
+        if moves:
+            return random.choice(moves)
 
 # -------------Test Code for Move Choice--------------------#
 # put the code below in main to test, change the user name based on whos being challenged
