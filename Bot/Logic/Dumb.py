@@ -13,8 +13,7 @@ class DumbBot(AlgorithmBase):
     # this is basically a pawn blitzkrieg
     def getMove(self):
 
-        moveHistory = []
-        board = self.getBoard()
+
         legal_Moves = [move.uci() for move in self.getBoard().generate_legal_moves()]
         move_List = ['c7c5', 'd7d5', 'e7e5', 'f7f5', 'b7b5', 'g7g5', 'a7a5', 'h7h5', 'c2c4', 'd2d4', 'e2e4', 'f2f4','b2b4','g2g4','a2a4']
         for x in move_List:
