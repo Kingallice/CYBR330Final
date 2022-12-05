@@ -4,6 +4,8 @@ import PySimpleGUI as sg
 def run_gui():
     bot_list = ["Dumb Bot", "Best Bot", "Random Bot", "Kill Bot", "Stock Fish"]
 
+    sg.theme('Dark Teal 2')
+
     font_title = ('Arial', 72, 'bold')
     font_h1 = ('Arial', 16)
 
@@ -12,11 +14,9 @@ def run_gui():
                             font=font_title,
                             justification='center',
                             pad=(50, 0),
-                            text_color='gold',
                             expand_x=True,
                             key='-TITLE-')],
                    [sg.Text('Created by Garret, Noah, and Jake',
-                            text_color='white',
                             font=('Arial', 16, 'bold'),
                             pad=((0, 0), (0, 50)),
                             key='credit')],
@@ -33,16 +33,14 @@ def run_gui():
                                   readonly=True,
                                   font=('Arial', 26),
                                   pad=((0, 0), (0, 50)),
-                                  button_background_color='blue',
-                                  text_color='darkblue',
-                                  button_arrow_color='gold',
+                                  background_color='white',
+                                  text_color='lime green',
                                   key='-BOT_INPUT-')],
 
                    [sg.Text('',
                             key='-OUTPUT-',
                             auto_size_text=True,
                             font=('Arial', 20),
-                            text_color='gold',
                             justification='center',
                             expand_x=True)],
 
