@@ -13,6 +13,7 @@ import random
 bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
 ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, BestBot, RandomBot, StockFish])
 
+
 def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
     ResultUtil.resetResultFile()
@@ -23,6 +24,8 @@ def bot_select():
     gameCount = 2
 
     selection = run_gui()
+    username = selection[1]
+    opponentList = [{"username": username}]
     if selection[0] == 'Dumb Bot':
         ChallengeUtil.testAlgorithm(bot, DumbBot, opponentList, gameCount)
     elif selection[0] == 'Random Bot':
@@ -39,5 +42,3 @@ def bot_select():
     return bot
 
 bot_choice = bot_select()
-
-

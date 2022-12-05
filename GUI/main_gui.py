@@ -20,6 +20,12 @@ def run_gui():
                             font=('Arial', 16, 'bold'),
                             pad=((0, 0), (0, 50)),
                             key='credit')],
+                   [sg.Text(text='Enter lichess.com username below:',
+                            font=('Arial', 16, 'bold'),
+                            key='username_label')],
+                   [sg.InputText(font=('Arial', 16),
+                                 pad=((0, 0), (0, 50)),
+                                 key='username')],
                    [sg.Text('Choose your chess bot below:',
                             auto_size_text=True,
                             font=font_h1,
@@ -65,7 +71,7 @@ def run_gui():
                        element_justification='center',
                        auto_size_text=True,
                        alpha_channel=0.99,
-                       size=(1000, 400)
+                       size=(1000, 600)
                        )
 
     input_list = [None]
@@ -76,6 +82,8 @@ def run_gui():
             break
         choice = window['-BOT_INPUT-'].get()
         input_list[0] = choice
+        username = window['username'].get()
+        input_list.append(username)
         if input_list[0] == 'Dumb Bot':
             window['-OUTPUT-'].update('You have chosen ' + input_list[0] + '. It seems you have chosen death... '
                                                                            'Sending your champion to battle!')
