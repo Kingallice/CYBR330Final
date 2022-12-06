@@ -20,6 +20,8 @@ class GameConnector:
             req = requests.post(url+'/'+self._game.getGameId()+'/move/'+move, headers={"Authorization":'Bearer ' + self._bot.getKey()})
 
     def _intializeAlgorithm(self, gameId):
+        if not gameId:
+            return None
         req = requests.get(url+'/stream/'+gameId, headers={"Authorization":'Bearer ' + self._bot.getKey()}, stream=True)
 
         if req.status_code == 200:

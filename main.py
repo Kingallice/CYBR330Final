@@ -10,15 +10,17 @@ from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
 import random
 
-bot = ChessBot("lip_FjFtfJSWH2mB8RH6g53L")#lip_dQJI4YyJYwytH4emLoyq")
+bot = ChessBot()#"lip_FjFtfJSWH2mB8RH6g53L")#lip_dQJI4YyJYwytH4emLoyq")
 ChallengeUtil.startAcceptingChallenges(bot, [BestBot])#[DumbBot, KillBot, BestBot, RandomBot, StockFish])
 
 
 def bot_select():
     """Run GUI, initialize a bot type based on input from GUI"""
-    ResultUtil.resetResultFile()
+    #ResultUtil.resetResultFile()
     opponentList =  [
+        {"username":"ai","level":1},
         {"username":"ai","level":2},
+        {"username":"ai","level":5},
         {"username":"ai","level":8}, 
         {"username":"dummyette"}]
     gameCount = 5

@@ -16,6 +16,6 @@ class RandomBot(AlgorithmBase):
         board = self.getBoard()
         moves = [move.uci() for move in board.generate_legal_moves()]
         if moves:
-            return random.choice()
+            return random.choice(moves)
 
 

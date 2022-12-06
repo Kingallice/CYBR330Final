@@ -28,9 +28,9 @@ class ChallengeUtil:
             if opponent["username"] == 'ai' and "level" in opponent.keys():
                 data = {'level': opponent['level']}
             req = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()}, stream=True)
-            for line in req.iter_lines():
-                if line:
-                    if line.decode('utf-8'):
+            try:
+                for line in req.iter_lines():
+                    if line and line != "":
                         line = json.loads(line.decode('utf-8'))
                         if "challenge" in line.keys():
                             line = line["challenge"]
@@ -39,6 +39,8 @@ class ChallengeUtil:
                         if "source" in line.keys():
                             if line["source"] == "ai":
                                 return line["id"]
+            except:
+                return None
         return None
     
     def createChallenges(bot, opponent, num):
