@@ -31,6 +31,10 @@ class AlgorithmBase:
         """Returns a copy of the board"""
         return self._board.copy()
 
+    def copy(self):
+        """Returns a copy of the algorithm"""
+        return self(self.getBoard())
+
     def getPieceCount(self, board=None, color=""):
         """Returns dictionary of pieces remaining for each color (or specified color only)."""
         white = {}

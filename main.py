@@ -10,8 +10,8 @@ from Bot.ResultUtil import ResultUtil
 from Bot.ChallengeUtil import ChallengeUtil
 import random
 
-bot = ChessBot("lip_dQJI4YyJYwytH4emLoyq")
-ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, BestBot, RandomBot, StockFish])
+bot = ChessBot("lip_FjFtfJSWH2mB8RH6g53L")#lip_dQJI4YyJYwytH4emLoyq")
+ChallengeUtil.startAcceptingChallenges(bot, [BestBot])#[DumbBot, KillBot, BestBot, RandomBot, StockFish])
 
 
 def bot_select():
@@ -21,11 +21,11 @@ def bot_select():
         {"username":"ai","level":2},
         {"username":"ai","level":8}, 
         {"username":"dummyette"}]
-    gameCount = 2
+    gameCount = 5
 
     selection = run_gui()
     username = selection[1]
-    if not username:
+    if not username and username != "":
         opponentList = [{"username": username}]
 
     if selection[0] == 'Dumb Bot':
@@ -39,7 +39,7 @@ def bot_select():
     elif selection[0] == 'Stock Fish':
         ChallengeUtil.testAlgorithm(bot, StockFish, opponentList, gameCount)
     else:
-        for x in [DumbBot, KillBot, BestBot, RandomBot, StockFish]:
+        for x in [DumbBot, KillBot, RandomBot, StockFish, BestBot]:
             ChallengeUtil.testAlgorithm(bot, x, opponentList, gameCount)
     return bot
 

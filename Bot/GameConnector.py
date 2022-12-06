@@ -16,7 +16,8 @@ class GameConnector:
         self._intializeAlgorithm(gameId)
         
     def sendMove(self, move):
-        req = requests.post(url+'/'+self._game.getGameId()+'/move/'+move, headers={"Authorization":'Bearer ' + self._bot.getKey()})
+        if move:
+            req = requests.post(url+'/'+self._game.getGameId()+'/move/'+move, headers={"Authorization":'Bearer ' + self._bot.getKey()})
 
     def _intializeAlgorithm(self, gameId):
         req = requests.get(url+'/stream/'+gameId, headers={"Authorization":'Bearer ' + self._bot.getKey()}, stream=True)

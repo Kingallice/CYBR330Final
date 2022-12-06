@@ -3,6 +3,7 @@ import time
 import random
 import requests
 import threading
+import json
 LiChessAPI = "https://lichess.org/api/challenge"
 
 class ChallengeUtil:
@@ -26,11 +27,18 @@ class ChallengeUtil:
             data = None
             if opponent["username"] == 'ai' and "level" in opponent.keys():
                 data = {'level': opponent['level']}
-            req = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()})
-            info = req.json()
-            if "challenge" in info.keys():
-                info = info["challenge"]
-            return(info["id"])
+            req = requests.post(LiChessAPI+'/'+opponent["username"], data=data, headers={"Authorization" : 'Bearer ' + bot.getKey()}, stream=True)
+            for line in req.iter_lines():
+                if line:
+                    if line.decode('utf-8'):
+                        line = json.loads(line.decode('utf-8'))
+                        if "challenge" in line.keys():
+                            line = line["challenge"]
+                            if line["status"] == "created":
+                                return line["id"]
+                        if "source" in line.keys():
+                            if line["source"] == "ai":
+                                return line["id"]
         return None
     
     def createChallenges(bot, opponent, num):
@@ -43,11 +51,10 @@ class ChallengeUtil:
 
     def testAlgorithm(bot, algo, opponentList, num):
         for opponent in opponentList:
-            challenges = ChallengeUtil.createChallenges(bot, opponent, num)
             i = 0
-            for challenge in challenges:
-                while threading.activeCount() > 5:
-                    time.sleep(60)
+            while i < num: 
+                while threading.active_count() > 5:
+                    continue
+                challenge = ChallengeUtil.sendChallenge(bot, opponent)
                 i += 1
-                newThread = threading.Thread(target=GameConnector, args=(bot, challenge, algo), name="Game " + str(i) + " " + str(opponent) + " - " + algo.getName())
-                newThread.start()
+                threading.Thread(target=GameConnector, args=(bot, challenge, algo), name="Game " + str(i) + " " + str(opponent) + " - " + algo.getName()).start()

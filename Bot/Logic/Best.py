@@ -1,6 +1,6 @@
 from Bot.Logic.Base import AlgorithmBase
 import random
-
+import requests
 
 class BestBot(AlgorithmBase):
     """BestBot chooses the most beneficial move from the set of all available moves then plays that move."""
@@ -8,7 +8,48 @@ class BestBot(AlgorithmBase):
     def getName():
         return "Best"
 
+    def copy(self):
+        return BestBot(" ".join([move.uci() for move in self.getBoard().move_stack]))
+
+    def rankState(self, bot):
+        scores = self.getScores()
+        if bot == "white":
+            return scores['white'] - scores['black']
+        return scores['black'] - scores['white']
+
+    def minimax(self, bot, depth = 0):
+        if depth > 2:
+            return self.rankState(bot)
+        moves, scores = [], []
+
+        for move in self.getBoard().generate_legal_moves():
+            temp = self.copy()
+            temp.moveUCI(move.uci())
+            scores.append(temp.minimax(bot, depth+1))
+            moves.append(move.uci())
+
+        #print(moves, scores)
+
+        if self.color() == bot:
+            max_idx = scores.index(max(scores))
+            move = moves[max_idx]
+            self.moveUCI(move)
+            return scores[max_idx]
+        else:
+            min_idx = scores.index(min(scores))
+            move = moves[min_idx]
+            self.moveUCI(move)
+            return scores[min_idx]
+
     def getMove(self):
+        req = requests.get("https://explorer.lichess.ovh/masters?play="+",".join([move.uci() for move in self.getBoard().move_stack]))
+        openingList = req.json()["moves"]
+        if openingList:
+            return random.choice([move["uci"] for move in openingList])
+        self.minimax(self.color())
+        return self.getBoard().pop().uci()
+
+    def getMoveX(self):
         """Method that serves the purpose of choosing the BestBot's next move"""
         board = self.getBoard()
         moves = board.generate_legal_moves()
