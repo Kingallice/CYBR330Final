@@ -30,7 +30,7 @@
             getData()
             function getData(){
                 xmlHttp = new XMLHttpRequest()
-                xmlHttp.open('GET', '/results.txt');
+                xmlHttp.open('GET', 'results.txt');
                 xmlHttp.onreadystatechange = function(){
                     if (xmlHttp.readyState == 3)
                         createBody(xmlHttp.responseText)
