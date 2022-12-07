@@ -1,1 +1,1 @@
-{"dummyette": {"Dumb": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 34.0}, "Random": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 37.0}, "Kill": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 67.0}, "StockFish": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 55.0}}}
+{"dummyette": {"Dumb": {"Win": 0, "Loss": 5, "Draw": 1, "MoveAvg": 47.5}, "Random": {"Win": 0, "Loss": 6, "Draw": 0, "MoveAvg": 47.5}, "Kill": {"Win": 0, "Loss": 6, "Draw": 1, "MoveAvg": 57.42857142857143}, "StockFish": {"Win": 0, "Loss": 5, "Draw": 1, "MoveAvg": 65.0}}}
