@@ -27,22 +27,22 @@ class ResultUtil:
     def getWinLossDraw(data, opponent, algorithm):
         if data:
             if opponent in data.keys():
-                if algorithm in data[opponent].keys():
-                    temp = data[opponent][algorithm]
-                    return (temp["Win"], temp["Loss"], temp["Draw"])
-        return (0, 0, 0)
+                if algorithm.getName() in data[opponent].keys():
+                    temp = data[opponent][algorithm.getName()]
+                    return (temp["Win"], temp["Loss"], temp["Draw"], temp["MoveAvg"])
+        return (0, 0, 0, 0)
 
     def saveResults(data, results):
         if data:
             if results["Opponent"] in data.keys():
-                data[results["Opponent"]][results["Algorithm"]] = {"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}
+                data[results["Opponent"]][results["Algorithm"]] = {"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"], "MoveAvg":results["MoveAvg"]}
             else:
-                data[results["Opponent"]] = {results["Algorithm"]: {"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}}
+                data[results["Opponent"]] = {results["Algorithm"]: {"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"], "MoveAvg":results["MoveAvg"]}}
         else:
-            data = {results["Opponent"]:{results["Algorithm"]:{"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"]}}}
+            data = {results["Opponent"]:{results["Algorithm"]:{"Win":results["Win"], "Loss":results["Loss"], "Draw":results["Draw"], "MoveAvg":results["MoveAvg"]}}}
         ResultUtil.saveResultFile(data)
 
-    def formatResults(bot, game, endData, algorithm):
+    def formatResults(bot, game, moves, endData, algorithm):
         botId = bot.getId()
         if endData == 'white' : 
             winner = game.getWhite() 
@@ -51,12 +51,13 @@ class ResultUtil:
         else :
             winner = None
         
-        (win, loss, draw) = ResultUtil.getWinLossDraw(ResultUtil.getResultFile(), Game.getColorId(game.getOpponent(bot.getId())), algorithm.getName())
+        (win, loss, draw, moveAvg) = ResultUtil.getWinLossDraw(ResultUtil.getResultFile(), Game.getColorId(game.getOpponent(bot.getId())), algorithm)
+        moveAvg = moveAvg*(win+loss+draw)
 
         if winner == None:
-            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss, "Draw" : draw+1})
+            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss, "Draw" : draw+1, "MoveAvg": (moveAvg+moves)/(win+loss+draw+1)})
         elif Game.getColorId(winner) == botId:
-            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win+1, "Loss": loss, "Draw" : draw})
+            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win+1, "Loss": loss, "Draw" : draw, "MoveAvg": (moveAvg+moves)/(win+loss+draw+1)})
         else:
-            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss+1, "Draw" : draw})
+            ResultUtil.saveResults(ResultUtil.getResultFile(), {"Opponent" : Game.getColorId(game.getOpponent(bot.getId())), "Algorithm" : algorithm.getName(),  "Win" : win, "Loss": loss+1, "Draw" : draw, "MoveAvg": (moveAvg+moves)/(win+loss+draw+1)})
         #print("Bot:", vars(bot), "\nGame:", vars(game), "\nWinner:", endData)

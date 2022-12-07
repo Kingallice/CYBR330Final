@@ -28,11 +28,11 @@ class GameConnector:
             for line in req.iter_lines():
                 if line:
                     lineData = json.loads(line.decode('utf-8'))
-                    if 'winner' in lineData.keys():
-                        ResultUtil.formatResults(self._bot, self._game, lineData['winner'], self._algo)
+                    if 'winner' in lineData.keys() and 'moves' in lineData.keys():
+                        ResultUtil.formatResults(self._bot, self._game, len(lineData['moves'].split(' ')), lineData['winner'], self._algo)
                         break
-                    if 'status' in lineData.keys() and lineData['status'] == 'draw':
-                        ResultUtil.formatResults(self._bot, self._game, lineData['status'], self._algo)
+                    if 'status' in lineData.keys() and 'moves' in lineData.keys() and lineData['status'] == 'draw':
+                        ResultUtil.formatResults(self._bot, self._game, len(lineData['moves'].split(' ')), lineData['status'], self._algo)
                         break
                     if 'state' in lineData.keys():
                         self._game = Game(lineData)

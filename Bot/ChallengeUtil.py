@@ -8,6 +8,13 @@ LiChessAPI = "https://lichess.org/api/challenge"
 
 class ChallengeUtil:
 
+    def resumeGames(bot, algoList):
+        req = requests.get("https://lichess.org/api/account/playing", headers={"Authorization":'Bearer ' + bot.getKey()}).json()
+        for chal in req['nowPlaying']:
+            while threading.active_count() > 5:
+                continue
+            threading.Thread(target=GameConnector, args=(bot, chal['gameId'], random.choice(algoList))).start()
+
     def acceptChallenges(bot, algoList):
         timer = None
         while True:
@@ -15,6 +22,8 @@ class ChallengeUtil:
                 req = requests.get(LiChessAPI, headers={"Authorization":'Bearer ' + bot.getKey()}).json()
                 if req['in']:
                     for chal in req['in']:
+                        while threading.active_count() > 5:
+                            continue
                         requests.post(LiChessAPI+'/'+chal['id']+'/accept', headers={"Authorization":'Bearer ' + bot.getKey()})
                         threading.Thread(target=GameConnector, args=(bot, chal['id'], random.choice(algoList))).start()
                 timer = time.time()

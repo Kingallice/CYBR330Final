@@ -11,7 +11,8 @@ from Bot.ChallengeUtil import ChallengeUtil
 import random
 
 bot = ChessBot()#"lip_FjFtfJSWH2mB8RH6g53L")#lip_dQJI4YyJYwytH4emLoyq")
-ChallengeUtil.startAcceptingChallenges(bot, [BestBot])#[DumbBot, KillBot, BestBot, RandomBot, StockFish])
+ChallengeUtil.resumeGames(bot, [DumbBot, BestBot, KillBot, RandomBot, StockFish])
+ChallengeUtil.startAcceptingChallenges(bot, [DumbBot, KillBot, BestBot, RandomBot, StockFish])
 
 
 def bot_select():
@@ -23,7 +24,7 @@ def bot_select():
         {"username":"ai","level":5},
         {"username":"ai","level":8}, 
         {"username":"dummyette"}]
-    gameCount = 5
+    gameCount = 1
 
     selection = run_gui()
     username = selection[1]
