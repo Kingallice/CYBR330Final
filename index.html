@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>ChessBot 3000 Stats</title>
+        <style>
+            body {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>ChessBot 3000 Stats</h1>
+            <table onclick="getData()">
+                <thead>
+                    <th>Username</th>
+                    <th>Algorithm</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Draws</th>
+                    <th>Average Moves</th>
+                </thead>
+                <tbody id="stats-tbody">
+
+                </tbody>
+            </table>
+        </div>
+        <script>
+            getData()
+            function getData(){
+                xmlHttp = new XMLHttpRequest()
+                xmlHttp.open('GET', '/results.txt');
+                xmlHttp.onreadystatechange = function(){
+                    if (xmlHttp.readyState == 3)
+                        createBody(xmlHttp.responseText)
+                }
+                xmlHttp.send();
+            }
+            function createBody(obj){
+                tbody = document.getElementById("stats-tbody");
+                tbody.innerHTML = ""
+                data = JSON.parse(obj)
+                for (item in data){
+                    tbody.innerHTML += createRow(data[item], item)
+                }
+            }
+            function createRow(data, name){
+                rows = ""
+                for (item in data){
+                    rows += "<tr><td>"+name+"</td>"+createCells(data[item], item) + "</tr>"
+                }
+                return rows
+            }
+            function createCells(data, name){
+                cells = "<td>"+name+"</td>"
+                for (item in data)
+                    cells += "<td class="+item+">"+ data[item] + "</td>"
+                return cells
+            }
+        </script>
+    </body>
+</html>
