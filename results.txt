@@ -1,0 +1,1 @@
+{"dummyette": {"Dumb": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 34.0}, "Random": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 37.0}, "Kill": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 67.0}, "StockFish": {"Win": 0, "Loss": 1, "Draw": 0, "MoveAvg": 55.0}}}
