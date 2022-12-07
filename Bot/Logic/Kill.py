@@ -12,4 +12,3 @@ class KillBot(AlgorithmBase):
         if len(moves) > 0:
             return random.choice(moves)
         return StockFish(" ".join([move.uci() for  move in self.getBoard().move_stack])).getMove()
-
