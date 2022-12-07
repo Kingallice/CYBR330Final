@@ -2,17 +2,41 @@
     <head>
         <title>ChessBot 3000 Stats</title>
         <style>
+            html {
+                background-color: lightgray;
+            }
             body {
                 display: flex;
                 align-items: center;
                 flex-direction: column;
             }
+            table, th, td {
+                border-collapse: collapse;
+                border: solid black 2px;
+                padding: 5px;
+            }
+            caption {
+                background-color: black;
+                color: white;
+                font-size: 25pt;
+            }
+            th {
+                background-color: grey;
+                font-size: 18pt;
+            }
+            td {
+                background-color: white;
+                font-size: 14pt;
+            }
+            .is-number {
+                text-align: right;
+            }
         </style>
     </head>
     <body>
         <div>
-            <h1>ChessBot 3000 Stats</h1>
             <table onclick="getData()">
+                <caption>ChessBot 3000 Stats</caption>
                 <thead>
                     <th>Username</th>
                     <th>Algorithm</th>
@@ -54,8 +78,12 @@
             }
             function createCells(data, name){
                 cells = "<td>"+name+"</td>"
-                for (item in data)
-                    cells += "<td class="+item+">"+ data[item] + "</td>"
+                for (item in data) {
+                    numClass = ''
+                    if (!Number.isNaN(Math.round(data[item])))
+                        numClass = ' is-number'
+                    cells += "<td class='"+item+numClass+"'>"+ Math.round(data[item]) + "</td>"
+                }
                 return cells
             }
         </script>
